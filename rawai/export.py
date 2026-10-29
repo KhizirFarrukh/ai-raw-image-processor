@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import io
+import os
+import time
 
 import cv2
 import numpy as np
@@ -44,6 +46,22 @@ def save_jpeg(img: np.ndarray, path: str, info: dict, quality: int = 95) -> int:
         icc_profile=_SRGB_ICC,
     )
     data = metadata.apply(buf.getvalue(), info)
-    with open(path, "wb") as fh:
-        fh.write(data)
+    write_atomic(path, data)
     return len(data)
+
+
+def write_atomic(path: str, data: bytes, attempts: int = 5):
+    """Write via a temp file + rename, retrying while Windows has the target locked (photo
+    viewers, Explorer preview and the search indexer briefly hold JPEGs open)."""
+    tmp = path + ".part"
+    with open(tmp, "wb") as fh:
+        fh.write(data)
+    for i in range(attempts):
+        try:
+            os.replace(tmp, path)
+            return
+        except OSError:
+            if i == attempts - 1:
+                os.remove(tmp)
+                raise
+            time.sleep(1.0 + i)
