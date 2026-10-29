@@ -1,0 +1,15 @@
+# PyTorch with CUDA: install first from the PyTorch index, e.g.
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+torch>=2.4
+torchvision>=0.19
+rawpy>=0.22
+numpy>=1.26
+pillow>=10.0
+opencv-python-headless>=4.9
+pyiqa>=0.1.13
+spandrel>=0.4
+transformers>=4.45
+pyexiv2>=2.12
+reverse_geocoder>=1.5
+pycountry>=23.0
+tqdm

@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+
+# Downloaded model weights
+models/
+*.pth
+*.pt
+*.safetensors
+*.onnx
+
+# Generated images and reports
+output/
+test_out/
+*.jpg
+*.jpeg
+*.log
+
+# Input RAW files (photos stay out of the repo)
+*.dng
+*.DNG
+*.RAW-IMAGE
+*.raw
+*.cr2
+*.cr3
+*.nef
+*.arw
+*.raf
+*.orf
+*.rw2
+
+# Editors / OS
+.vscode/
+.idea/
+.claude/
+Thumbs.db
+desktop.ini
+.DS_Store
